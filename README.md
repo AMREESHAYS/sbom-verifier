@@ -8,7 +8,7 @@
 ---
 
 ## ⚠️ The Problem  
-OpenClaw (200k+ GitHub stars) has **26.1% of third-party skills containing vulnerabilities** ([source](https://arxiv.org/abs/2603.01287)).  
+OpenClaw (200k+ GitHub stars) has **26.1 skills containing vulnerabilities** ([source](https://arxiv.org/abs/2603.01287)).  
 Attackers poison SBOMs in CI/CD pipelines → silent deployment of malware (e.g., `log4j-backdoor`, `AMOS stealer`).  
 Existing tools (Syft, Trivy) *generate* SBOMs — but **none verify integrity offline**.
 
@@ -34,7 +34,8 @@ This tool closes that gap.
 | Attack | Mitigated? |
 |--------|------------|
 | Tampered SBOM in CI pipeline | ✅ |
-| Malicious skill uploaded to ClawHub | ✅ (detect via hash mismatch)| MITM on SBOM download | ✅ (no network used) |
+| Malicious skill uploaded to ClawHub | ✅ (detect via hash mismatch) |
+| MITM on SBOM download | ✅ (no network used) |
 | Supply-chain poisoning via dependency spoofing | ✅ (verifies full artifact) |
 
 > ❗ Does **not** replace runtime sandboxing. It verifies *provenance* — the first line of defense.
@@ -61,9 +62,7 @@ chmod +x sbom-verifier
 # POISONED
 # Expected: 2cf24dba...
 # Actual:   a1b2c3d4...
-```
-
-### 3. Generate your own baseline hash
+``. Generate your own baseline hash
 ```bash
 # On clean system, after building skill:
 sha3sum -a 512 skill.sbom | cut -d' ' -f1
@@ -80,17 +79,6 @@ sha3sum -a 512 skill.sbom | cut -d' ' -f1
 
 ---
 
-## 💼 Pro Edition ($49 one-time)  
-Available in [Releases](https://github.com/AMREESSHAYS/sbom-verifier/releases):  
-- ✅ Auto-fix corrupted SBOMs (rewrite to known-good state)  
-- ✅ PGP/Ed25519 signature verification  
-- ✅ GitLab/Jenkins plugin (fail build on `POISONED`)  
-- ✅ Support SLA (email response < 4h)
-
-> *Free version detects. Pro version resolves.*
-
----
-
 ## 🔐 Security Notes  
 - Built with `rustc 1.78+`, `sha3 0.10`, `hex 0.4` — no CVEs  
 - Binary verified via reproducible build (hashes published in release notes)  
@@ -99,12 +87,9 @@ Available in [Releases](https://github.com/AMREESSHAYS/sbom-verifier/releases):
 ---
 
 ## 📜 License  
-[MIT License](LICENSE) — use, modify, redistribute freely.  
-*Pro features are closed-source; license terms included in release.*
+[MIT License](LICENSE) — use, modify, redistribute freely.
 
 ---
 
-> **“We caught a ClawHavoc skill in staging — sbom-verifier blocked it 3 minutes before prod deploy.”**  
+> **“We caught a ClawHavoc skill in staging — sbom-verifier blocked before prod deploy.”**  
 > — DevSecOps Lead, FinTech (Q1 2026)
-```
-
