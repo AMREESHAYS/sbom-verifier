@@ -87,7 +87,8 @@ sha3sum -a 512 skill.sbom | cut -d' ' -f1
 ---
 
 ## 📜 License  
-[MIT License](LICENSE) — use, modify, redistribute freely.
+
+[MIT](LICENSE) | [Full Text](LICENSE)— use, modify, redistribute freely.
 
 ---
 
